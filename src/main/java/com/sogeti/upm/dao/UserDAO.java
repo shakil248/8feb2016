@@ -1,6 +1,5 @@
 package com.sogeti.upm.dao;
 
-import com.sogeti.upm.model.Address;
 import com.sogeti.upm.model.User;
 
 public interface UserDAO {

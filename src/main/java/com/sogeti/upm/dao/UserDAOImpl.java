@@ -2,7 +2,6 @@ package com.sogeti.upm.dao;
 
 import org.springframework.stereotype.Repository;
 
-import com.sogeti.upm.model.Address;
 import com.sogeti.upm.model.User;
 
 @Repository

@@ -1,0 +1,16 @@
+<div>
+<form role="form" name="loginFrom" autocomplete="off">
+	<div>
+		<p>Welcome <span ng-bind="user.mail"></span></p>
+		<label for="InputEmail">Mail</label>
+		<input type="text" placeholder="Enter Name" required ng-model="user.mail" autocomplete="off">
+	</div>
+	<div>
+
+		<label for="InputPassword">Password</label>
+		<input type="text" placeholder="Password" id="inputPassword" required ng-model="user.pass" autocomplete="off">
+	</div>
+	<button class="btn btn-default" type="submit" ng-mouseout="mout()" ng-mouseover="mover()" ng-click="login(user)" ng-disabled="loginFrom.$invalid" autocomplete="off">Submit</button>
+	<h2>{{loginStatus}}</h2>
+	</form>
+</div>

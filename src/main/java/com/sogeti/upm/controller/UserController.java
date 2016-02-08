@@ -5,20 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.util.UriComponentsBuilder;
 
-import com.sogeti.upm.dto.UserDetailDto;
+import com.sogeti.upm.model.States;
 import com.sogeti.upm.model.User;
+import com.sogeti.upm.service.StatesService;
 import com.sogeti.upm.service.UserService;
 
 @Controller
@@ -27,14 +23,13 @@ public class UserController {
 	@Autowired
 	UserService userService;
 	
-	@RequestMapping(value = "/hello",method = RequestMethod.GET)
-	   public ModelAndView  printHello() {
-	     
-User user = userService.getUser("1");
-//model.addAttribute("user", user);
-//	      return "hello";
-System.out.println(user.getEmailId());
-return new ModelAndView("hello", "user", user);
+	@Autowired
+	StatesService statesService;
+	
+	@RequestMapping(value = "/",method = RequestMethod.GET)
+	   public String  printHello() {
+		statesService.populateStates();	     
+		return "index";
 	   }
 	
 	 @RequestMapping(value = "/user/", method = RequestMethod.GET)
@@ -46,15 +41,22 @@ return new ModelAndView("hello", "user", user);
 	        return new ResponseEntity<List<User>>(users, HttpStatus.OK);
 	    }
 	 
+	 @RequestMapping(value = "/states", method = RequestMethod.GET)
+	    public ResponseEntity<List<States>> getStates() {
+	        List<States> states = statesService.getStates();
+	        System.out.println(states);
+	        return new ResponseEntity<List<States>>(states, HttpStatus.OK);
+	    }
+	 
 	 @RequestMapping(value = "/user", method = RequestMethod.POST)
-	    public @ResponseBody ResponseEntity<Void> createUser(@RequestBody UserDetailDto userDetailDto) {
-	        System.out.println("Creating User " +userDetailDto.getEmailId());
-	  
+	    public @ResponseBody ResponseEntity<Void> createUser(@RequestBody User user) {
+	        System.out.println("Creating User " +user.getEmailId());
+	        user.setLoginId(null);
 //	        if (userService.isUserExist(user)) {
 //	            System.out.println("A User with name " + user.getUsername() + " already exist");
 //	            return new ResponseEntity<Void>(HttpStatus.CONFLICT);
 //	        }
-	        userService.createUser(userDetailDto);
+	        userService.createUser(user);
 	  
 	        HttpHeaders headers = new HttpHeaders();
 //	        headers.setLocation(ucBuilder.path("/user/{id}").buildAndExpand(user.getEmailId()).toUri());

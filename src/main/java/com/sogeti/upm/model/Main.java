@@ -30,13 +30,21 @@ public class Main {
 		AbstractApplicationContext context = new AnnotationConfigApplicationContext(AppConfig.class);
         
 		ServiceTemp dao = context.getBean(ServiceTemp.class);
+		
+		States states = new States();
+		states.setStateName("CH");
+		dao.persist(states);
+		States states1 = new States();
+		states1.setStateName("Delfi");
+		dao.persist(states1);
+		
         Address address = new Address();
         
         address.setCity("city");
         address.setCountry("country");
         address.setHouseNo(1234);
-        States states = new States();
-        states.setStateName("CG");
+//        States states = new States();
+//        states.setStateName("CG");
 //        address.setStates(states);
         address.setStreet("street");
         

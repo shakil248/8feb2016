@@ -16,8 +16,10 @@ import javax.persistence.Table;
 public class User {
 	
 	@Id
-    @Column(name="login_Id")
+    @Column(name="id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private String id;
+	
 	private String loginId;
 	@Column(name="user_Name")
 	private String userName;
@@ -33,6 +35,13 @@ public class User {
 	private Address address;
 	
 	
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
 	public String getLoginId() {
 		return loginId;
 	}

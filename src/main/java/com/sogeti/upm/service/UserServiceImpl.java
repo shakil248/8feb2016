@@ -17,19 +17,19 @@ public class UserServiceImpl implements UserService{
 	UserDAO userDAO;
 
 	@Override
-	public void createUser(UserDetailDto userDetailDto) {
+	public void createUser(User user) {
 		
-		User user = new User();
-		Address address = new Address();
-		user.setEmailId(userDetailDto.getEmailId());
-		user.setPassword(userDetailDto.getPassword());
-		user.setUserName(userDetailDto.getUserName());
-		
-		address.setCity(userDetailDto.getCity());
-		address.setCountry(userDetailDto.getCountry());
-		address.setHouseNo(userDetailDto.getHouseNo());
-		address.setStreet(userDetailDto.getStreet());
-		user.setAddress(address);
+//		User user = new User();
+//		Address address = new Address();
+//		user.setEmailId(userDetailDto.getEmailId());
+//		user.setPassword(userDetailDto.getPassword());
+//		user.setUserName(userDetailDto.getUserName());
+//		
+//		address.setCity(userDetailDto.getCity());
+//		address.setCountry(userDetailDto.getCountry());
+//		address.setHouseNo(userDetailDto.getHouseNo());
+//		address.setStreet(userDetailDto.getStreet());
+//		user.setAddress(address);
 		userDAO.createUser(user);
 	}
 

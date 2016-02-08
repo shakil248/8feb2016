@@ -1,15 +1,11 @@
 package com.sogeti.upm.model;
 
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -26,16 +22,9 @@ public class Address {
 	private int houseNo;
 	private String street;
 	private String city;
-	
-//	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-//	@JoinColumn(name="state_Id")
-//	private States states;
-	
+	private String stateId;
+
 	private String country;
-	
-//	 @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
-//	 @JoinColumn(name="login_Id")
-//	 private User user;
 	
 	
 	public String getAddressId() {
@@ -68,20 +57,14 @@ public class Address {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-//	public User getUser() {
-//		return user;
-//	}
-//	public void setUser(User user) {
-//		this.user = user;
-//	}
 
-//	public States getStates() {
-//		return states;
-//	}
-//	public void setStates(States states) {
-//		this.states = states;
-//	}
-
+	
+	public String getStateId() {
+		return stateId;
+	}
+	public void setStateId(String stateId) {
+		this.stateId = stateId;
+	}
 	@Override
 	public String toString() {
 		return "city"+city;

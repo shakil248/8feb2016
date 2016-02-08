@@ -24,7 +24,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 @EnableWebMvc
 @EnableTransactionManagement
 @ComponentScan({ "com.sogeti.upm" })
-@PropertySource(value = { "file:///g:/etc/h2db.properties" })
+@PropertySource(value = { "file:///c:/etc/h2db.properties" })
 public class SpringContext extends WebMvcConfigurerAdapter {
 	
 
@@ -70,7 +70,7 @@ public class SpringContext extends WebMvcConfigurerAdapter {
 	    
 	    @Override
 	    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-	        registry.addResourceHandler("/static/**").addResourceLocations("/static/");
+	        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	    }
 	    
 	    @Bean
