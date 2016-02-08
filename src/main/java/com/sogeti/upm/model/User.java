@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -27,14 +28,9 @@ public class User {
 //	@Target(JdbcBlob.class)
 //	private JdbcBlob image ;
 	
-//	@OneToOne(fetch = FetchType.EAGER, mappedBy = "USER", cascade = CascadeType.PERSIST)
-//	@Column(name="addressId")
-	
-//	@OneToOne(cascade = CascadeType.ALL)
-//	private Address address;
-	
-//	@OneToOne(fetch = FetchType.LAZY, mappedBy = "USER", cascade = CascadeType.ALL)
-//	private Address address;
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+	@JoinColumn(name="address_Id")
+	private Address address;
 	
 	
 	public String getLoginId() {
@@ -61,23 +57,14 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-//	public JdbcBlob getImage() {
-//		return image;
-//	}
-//	public void setImage(JdbcBlob image) {
-//		this.image = image;
-//	}
 	
 	
-//	public Address getAddress() {
-//		return address;
-//	}
-//	
-//	public void setAddress(Address address) {
-//		this.address = address;
-//	}
-	
-	
+	public Address getAddress() {
+		return address;
+	}
+	public void setAddress(Address address) {
+		this.address = address;
+	}
 	@Override
 	public String toString() {
 		return "UserName "+userName+" email "+emailId+" loginId "+loginId;

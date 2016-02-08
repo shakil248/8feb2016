@@ -1,5 +1,7 @@
 package com.sogeti.upm.dao;
 
+import java.util.List;
+
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class BaseDAO {
     	return (T) getSession().get(type, id);
     }
     
+    public <T> List<T> getAll(Class<T> type){
+    	return  getSession().createCriteria(type).list();
+    }
     
     
    

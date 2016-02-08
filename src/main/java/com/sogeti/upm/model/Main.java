@@ -1,14 +1,10 @@
 package com.sogeti.upm.model;
 
-import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.Date;
 
-import org.h2.jdbcx.JdbcConnectionPool;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 
-import com.sogeti.upm.dao.BaseDAO;
 import com.sogeti.upm.service.ServiceTemp;
 import com.sogeti.upm.spring.AppConfig;
 
@@ -41,7 +37,7 @@ public class Main {
         address.setHouseNo(1234);
         States states = new States();
         states.setStateName("CG");
-        address.setStates(states);
+//        address.setStates(states);
         address.setStreet("street");
         
         User user = new User();
@@ -51,9 +47,9 @@ public class Main {
 //        user.setLoginId("loginId");
         user.setPassword("password");
         user.setUserName("userName");
-      address.setUser(user);
-     
-      dao.persist(address);
+//      address.setUser(user);
+      user.setAddress(address);
+      dao.persist(user);
         UserOTP userOTP = new UserOTP();
         userOTP.setDateTime(new Date());
         userOTP.setOtp("dsdaslkdasjda");

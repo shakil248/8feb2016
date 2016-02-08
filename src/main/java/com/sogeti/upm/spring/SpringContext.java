@@ -15,12 +15,17 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
+@EnableWebMvc
 @EnableTransactionManagement
 @ComponentScan({ "com.sogeti.upm" })
-@PropertySource(value = { "file:///c:/etc/h2db.properties" })
-public class SpringContext {
+@PropertySource(value = { "file:///g:/etc/h2db.properties" })
+public class SpringContext extends WebMvcConfigurerAdapter {
 	
 
 	 @Autowired
@@ -53,6 +58,19 @@ public class SpringContext {
 	        properties.put("hibernate.format_sql", environment.getRequiredProperty("hibernate.format_sql"));
 	        
 	        return properties;        
+	    }
+	    
+	    @Bean
+	    public InternalResourceViewResolver jspViewResolver() {
+	        InternalResourceViewResolver bean = new InternalResourceViewResolver();
+	        bean.setPrefix("/WEB-INF/views/");
+	        bean.setSuffix(".jsp");
+	        return bean;
+	    }
+	    
+	    @Override
+	    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+	        registry.addResourceHandler("/static/**").addResourceLocations("/static/");
 	    }
 	    
 	    @Bean
