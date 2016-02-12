@@ -18,11 +18,19 @@ public class BaseDAO {
     }
  
     public <T> void persist(T entity) {
-        	getSession().persist(entity);
+    	getSession().persist(entity);
+    }
+    
+    public <T> void saveOrUpdate(T entity) {
+        	getSession().saveOrUpdate(entity);
     }
  
     public <T> void update(T entity) {
         getSession().merge(entity);
+    }
+    
+    public <T> void delete(T entity) {
+        getSession().delete(entity);
     }
     
     public <T,V extends String> T get(Class<T> type, V id){

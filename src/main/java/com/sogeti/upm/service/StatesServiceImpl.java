@@ -23,6 +23,9 @@ public class StatesServiceImpl implements StatesService {
 
 	@Override
 	public void populateStates() {
+		if (null!= statesDAO.getStates() && statesDAO.getStates().size()>0){
+			return;
+		}
 		States states1 = new States();
 		States states2 = new States();
 		States states3 = new States();

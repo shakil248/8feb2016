@@ -1,16 +1,18 @@
 <div>
 <form role="form" name="loginFrom" autocomplete="off">
+		<h1>User Login</h1>
 	<div>
-		<p>Welcome <span ng-bind="user.mail"></span></p>
-		<label for="InputEmail">Mail</label>
-		<input type="text" placeholder="Enter Name" required ng-model="user.mail" autocomplete="off">
+		<label for="InputLoginId">Login Id:</label>
+		<input type="text" placeholder="Enter Login Id" required ng-model="loginId" autocomplete="off">
 	</div>
 	<div>
-
-		<label for="InputPassword">Password</label>
-		<input type="text" placeholder="Password" id="inputPassword" required ng-model="user.pass" autocomplete="off">
+		<label for="InputOTP">OTP:</label>
+		<input type="text" placeholder="Enter OTP" required ng-model="generatedOTP" autocomplete="off">
 	</div>
-	<button class="btn btn-default" type="submit" ng-mouseout="mout()" ng-mouseover="mover()" ng-click="login(user)" ng-disabled="loginFrom.$invalid" autocomplete="off">Submit</button>
-	<h2>{{loginStatus}}</h2>
+	<div>
+		<label for="InputPassword">Password:</label>
+		<input type="password" placeholder="Enter Password" id="inputPassword" required ng-model="password" autocomplete="off">
+	</div>
+	<button class="btn btn-default" type="submit" ng-click="login()" ng-disabled="loginFrom.$invalid" autocomplete="off">Login</button>
 	</form>
 </div>

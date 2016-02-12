@@ -20,6 +20,7 @@ public class User {
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String id;
 	
+	@Column(name="login_id")
 	private String loginId;
 	@Column(name="user_Name")
 	private String userName;
@@ -27,14 +28,16 @@ public class User {
 	private String emailId;
 	@Column(name="password")
 	private String password;
-//	@Target(JdbcBlob.class)
-//	private JdbcBlob image ;
 	
-	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
+//	@Target(binary)
+	@Column(name="image", length = 20971520)
+	private byte[] image;
+	
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name="address_Id")
 	private Address address;
 	
-	
+	private String data;
 	
 	public String getId() {
 		return id;
@@ -73,6 +76,22 @@ public class User {
 	}
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+	
+
+	public byte[] getImage() {
+		return image;
+	}
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
+	
+	
+	public String getData() {
+		return data;
+	}
+	public void setData(String data) {
+		this.data = data;
 	}
 	@Override
 	public String toString() {

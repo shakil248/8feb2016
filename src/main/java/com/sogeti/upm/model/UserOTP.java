@@ -17,7 +17,7 @@ public class UserOTP {
     @Column(name="otp_Id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private String otpId;
-	private String fkUserId;
+	private String loginId;
 	private String otp;
 	private Date dateTime;
 	
@@ -39,10 +39,11 @@ public class UserOTP {
 	public void setDateTime(Date dateTime) {
 		this.dateTime = dateTime;
 	}
-	public String getFkUserId() {
-		return fkUserId;
+	public String getLoginId() {
+		return loginId;
 	}
-	public void setFkUserId(String fkUserId) {
-		this.fkUserId = fkUserId;
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
 	}
+	
 }

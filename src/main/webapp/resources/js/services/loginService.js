@@ -1,42 +1,41 @@
 'use strict';
 app.factory('loginService', function($location,$http,sessionService) {
+	
     return {
-        login: function(user,scope) { 
-		if(user.mail=="a" && user.pass=="a"){
-			var s = {stateId:"stateId", stateName:"stateName"};
-		var res = $http.post('http://localhost:8080/upm/pop', s);
+        login: function(scope) { 
+		
+		var res = $http.get('http://localhost:8080/upm/dologin', {params : {'loginId':scope.loginId, 'password':scope.password, 'otp':scope.generatedOTP}});
 		res.success(function(data, status, headers, config) {
 			  console.log("Success", data);
+			  if(data==true){
+				  $location.path('/user');  
+			  }else{
+				  	scope.loginStats="Login failed";
+			  }
 		});
 		res.error(function(data, status, headers, config) {
 			 console.log("Failure");
 		});	
-				scope.loginStatus = "Login Successful";
-				sessionService.set('user','1001');
-				$location.path('/home');
-				
-		}else{
-				scope.loginStatus = "Login UnSuccessful";
-				$location.path('/login');
-				
-		}
 		},
+		
+		generateotp: function(lId){
+				var promise  = $http.get('http://localhost:8080/upm/generateotp',{params: {loginId: lId}}).
+                then(function  (response) {
+                    return response.data.otp;
+                });
+				return promise ;
+				
+		},
+	
 		logout: function(){
-				if(sessionService.get('user')){
-					sessionService.destroy('user');
+				if(sessionService.get('loginId')){
+					sessionService.destroy('loginId');
 					$location.path('/login');
 				}
 		},
 		isLogged: function() {
-			if(sessionService.get('user')) {return true;} else {return false;}
+			if(sessionService.get('loginId')) {return true;} else {return false;}
 		}
 		
     };
 });
-
-
-
-
-
-
-

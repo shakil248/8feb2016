@@ -1,51 +1,63 @@
 <div>
 
-<input type="file" accept="image/*" image="image"/>
-
-<img ng-show="image" ng-src="{{image.url}}" type="{{image.file.type}}" />
-
 <form role="form" name="registrationFrom">
 	<div>
+		 <label for="InputProfilePicture">Profile Picture</label>
+		 <img id="output" height="150" width="120" />
+		 <input id="InputProfilePicture" type="file" accept="image/*" onchange="angular.element(this).scope().uploadImage(this.files)" value="Upload Photo" >
+	</div>
+	<div>
 		<label for="InputLoginId">Login Id</label>
-		<input type="text" placeholder="Enter Name" id="InputLoginId" required ng-model="user.loginId" autocomplete="off">
+		<input type="text" placeholder="Enter Name" id="InputLoginId" required ng-model="user.loginId">
+		
 	</div>
 	<div>
 		<label for="InputPassword">Password</label>
-		<input type="password" placeholder="Password" id="inputPassword" required ng-model="user.password" autocomplete="off">
+		<input type="password" placeholder="Password" id="inputPassword" ng-min="6" ng-max="10" required ng-model="user.password"  ng-pattern="/^[a-zA-Z0-9]*$/">
 	</div>
 	<div>
 		<label for="InputUserName">User Name</label>
-		<input type="text" placeholder="Enter Name" id="InputLoginId" required ng-model="user.userName" autocomplete="off">
+		<input type="text" placeholder="Enter Name" id="InputLoginId" required ng-model="user.userName" >
+		
 	</div>
 	<div>
 		<label for="InputEmailId">Email Id</label>
-		<input type="text" placeholder="Enter Name" id="InputEmailId" required ng-model="user.emailId" autocomplete="off">
+		<input type="email" placeholder="Enter Name" id="InputEmailId" required ng-model="user.emailId" >
+		
 	</div>
 	<div>Address</div>
 	<div>
 		<label for="InputHouseNo">House No</label>
-		<input type="number" placeholder="Enter House No" id="InputHouseNo" required ng-model="user.address.houseNo" autocomplete="off">
+		<input type="number" placeholder="Enter House No" id="InputHouseNo" required ng-model="user.address.houseNo" >
+			
 	</div>
 	<div>
 		<label for="InputStreet">Street</label>
-		<input type="text" placeholder="Enter Street" id="InputStreet" required ng-model="user.address.street" autocomplete="off">
+		<input type="text" placeholder="Enter Street" id="InputStreet" required ng-model="user.address.street" >
+		
 	</div>
 	<div>
 		<label for="InputCity">City</label>
-		<input type="text" placeholder="Enter City" id="InputCity" required ng-model="user.address.city" autocomplete="off">
+		<input type="text" placeholder="Enter City" id="InputCity" required ng-model="user.address.city" >
+		
 	</div>
 	<div>
 		<label for="InputState">State</label>
-		 <select id="InputState" ng-model="user.address.stateId" ng-options="obj.stateId as obj.stateName for obj in states">  
-	
+		 <select id="InputState" ng-model="user.address.stateId" ng-options="obj.stateId as obj.stateName for obj in states"><option value="">States</option></select>
+		 
 	</div>
 	<div>
 		<label for="InputCountry">Country</label>
-		<input type="text" placeholder="Enter Country" id="InputCountry" required ng-model="user.address.country" autocomplete="off">
+		<input type="text" placeholder="Enter Country" id="InputCountry" required ng-model="user.address.country" >
+		
 	</div>
+	<div>
+	<button class="btn btn-default" type="submit" ng-click="createUser(user)" ng-disabled="registrationFrom.$invalid || !imageLoaded" >Submit</button>	
+	<button class="btn btn-default" type="button" ng-click="clearUser(user)" >Clear</button>
+	</div>
+
 	
-	<button class="btn btn-default" type="submit" ng-click="createUser(user)" ng-disabled="registrationFrom.$invalid" autocomplete="off">Submit</button>
-	<h2>{{loginStatus}}</h2>
+	<span style="color:red">{{errorMessage}}</span>
 	</form>
 	
 	

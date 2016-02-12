@@ -1,6 +1,6 @@
 'use strict';
-app.directive('userDirective', function(){
+app.directive('userDirective', function($rootScope){
 	return {
-	templateUrl:'resources/partials/tpl/userRegistration.tpl.html',
+	templateUrl:'resources/partials/tpl/userRegistration.tpl.html'
 	};
 });
