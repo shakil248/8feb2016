@@ -2,7 +2,7 @@
 
 <form role="form" name="registrationFrom">
 	<div>
-		 <label for="InputProfilePicture">Profile Picture</label>
+		 <h3>Profile Picture</h3>
 		 <img id="output" height="150" width="120" />
 		 <input id="InputProfilePicture" type="file" accept="image/*" onchange="angular.element(this).scope().uploadImage(this.files)" value="Upload Photo" >
 	</div>
@@ -13,7 +13,7 @@
 	</div>
 	<div>
 		<label for="InputPassword">Password</label>
-		<input type="password" placeholder="Password" id="inputPassword" ng-min="6" ng-max="10" required ng-model="user.password"  ng-pattern="/^[a-zA-Z0-9]*$/">
+		<input type="password" placeholder="Password" id="inputPassword" ng-min="6" ng-max="10" required ng-model="user.password"  ng-pattern="/^([0-9]+[a-zA-Z]+|[a-zA-Z]+[0-9]+)[0-9a-zA-Z]*$/">
 	</div>
 	<div>
 		<label for="InputUserName">User Name</label>
