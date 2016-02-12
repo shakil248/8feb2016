@@ -11,8 +11,11 @@ app.controller('loginCtrl', function($scope,$location, loginService,sessionServi
 	};
 	
     $scope.generateotp=function(){
-		 sessionService.set('loginId',$scope.loginId);
-		 $location.path('/generatedotp');
+    	if(null!=$scope.loginId){
+    		sessionService.set('loginId',$scope.loginId);
+   		 	$location.path('/generatedotp');
+    	}
+		 
 	};
 });
 
