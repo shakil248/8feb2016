@@ -10,6 +10,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="USER")
@@ -29,7 +30,6 @@ public class User {
 	@Column(name="password")
 	private String password;
 	
-//	@Target(binary)
 	@Column(name="image", length = 20971520)
 	private byte[] image;
 	
@@ -37,6 +37,7 @@ public class User {
 	@JoinColumn(name="address_Id")
 	private Address address;
 	
+	@Transient
 	private String data;
 	
 	public String getId() {
